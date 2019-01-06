@@ -1,0 +1,43 @@
+<h1>Contact us</h1>
+
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+    <h5 *ngIf="success">Your form is valid!</h5>
+
+    <label>
+      Blog Id:
+      <input type="text" formControlName="blogId">
+      <div *ngIf="submitted && messageForm.controls.blogId.errors" class="error">
+        <div *ngIf="messageForm.controls.blogId.errors.required">Your blog id is required...</div>
+      </div>
+    </label>
+  
+    <label>
+      Url:
+      <textarea formControlName="url"></textarea>
+      <div *ngIf="submitted && messageForm.controls.url.errors" class="error">
+        <div *ngIf="messageForm.controls.url.errors.required">A url is required.</div>
+      </div>
+    </label>
+
+    <input type="submit" value="Send message" class="cta">
+  
+  </form>
+
+  <div *ngIf="success" class="results">
+    <strong>Blog Id:</strong> 
+    <span>{{ messageForm.controls.blogId.value }}</span>
+
+    <strong>Url:</strong> 
+    <span>{{ messageForm.controls.url.value }}</span>
+  </div>
+
+  <h1>Users</h1>
+
+<ul *ngIf="users">
+  <li *ngFor="let user of users">
+   
+    <p>{{ user.blogId }} {{ user.url }}</p>
+  </li>
+</ul>
+
